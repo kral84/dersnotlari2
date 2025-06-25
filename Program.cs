@@ -384,17 +384,17 @@ namespace ConsoleApp1
             if (yas < 45 && cocukSayisi < 3)
             {
                 double yenimaas = maas + cocukSayisi * 2500;
-                Console.WriteLine(yenimaas + "Maasınız: ");
+                Console.WriteLine(isim + " Maasınız: " + yenimaas );
             }
             else if (yas < 45 && cocukSayisi >= 3)
             {
                 double yenimaas2 = maas + cocukSayisi * eklenenMaaş;
-                Console.WriteLine(eklenenMaaş + "Maasınız: ");
+                Console.WriteLine(isim + " Maasınız: " + eklenenMaaş);
             }
             else
             {
                 double ekmaas2 = maas + ekpara;
-                Console.WriteLine(ekmaas2 + "Maasınız: ");
+                Console.WriteLine(isim + " Maasınız: " +ekmaas2);
             }
 
 
