@@ -1057,56 +1057,680 @@ namespace ConsoleApp1
                         }
                         break;
                     case 2:
+                    anamenü2:
                         {
-                            Console.WriteLine("****** Kartsız İşlem Menüsü *******");
-                            Console.WriteLine("Cepbank para çekmek için 1 tuşuna basınız");
-                            Console.WriteLine("Para yatırmak için 2 tuşuna basınız");
-                            Console.WriteLine("Kredi Kartı ödeme 3 tuşuna basınız");
-                            Console.WriteLine("Egitim ödemeleri için 4 tuşuna basınız.");
-                            Console.WriteLine("Ödemeler için 5 tuşuna basınız.");
-                            int kartsızsecim = Convert.ToInt32(Console.ReadLine());
-                            if (kartsızsecim == 1)
+                            while (true)
                             {
-                                int hak2 = 3;
-                                while (hak2 > 0)
+                                try
                                 {
-                                    try
+                                    Console.WriteLine("****** Kartsız İşlem Menüsü *******");
+                                    Console.WriteLine("Cepbank para çekmek için 1 tuşuna basınız");
+                                    Console.WriteLine("Para yatırmak için 2 tuşuna basınız");
+                                    Console.WriteLine("Kredi Kartı ödeme 3 tuşuna basınız");   // yapmadım sanırım unuttum ne yapıp yapmadığımı
+                                    Console.WriteLine("Egitim ödemeleri için 4 tuşuna basınız.");
+                                    Console.WriteLine("Ödemeler için 5 tuşuna basınız.");
+                                    int kartsızsecim = Convert.ToInt32(Console.ReadLine());
+
+                                    if (kartsızsecim == 1)
                                     {
-                                        Console.WriteLine("TC kimlik numaranızı giriniz. ");
-                                        string tcKimlik1 = Console.ReadLine();
-                                        Console.WriteLine("Telefon numarasınız giriniz");
-                                        string telefonNumarası1 = Console.ReadLine();
-                                        if (tcKimlik1.Length == 11 && telefonNumarası1.Length == 10)
+                                        int hak2 = 3;
+                                        while (hak2 > 0)
                                         {
-                                            Console.WriteLine("TC kimlik ve telefon numarası doğrulandı.");
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("TC kimlik numarası 11 haneli ve telefon numarası 10 haneli olmalıdır.");
-                                            hak2--;
-                                            Console.WriteLine("Kalan deneme hakkı: " + hak2);
-                                            if (hak2 == 0)
+                                            try
                                             {
-                                                int lupi2 = 0;
-                                                while (lupi2 < 100)
+                                                int para = 2500;
+                                                Console.WriteLine("TC kimlik numaranızı giriniz. ");
+                                                string tcKimlik1 = Console.ReadLine();
+                                                Console.WriteLine("Telefon numarasınız giriniz");
+                                                string telefonNumarası1 = Console.ReadLine();
+                                                if (tcKimlik1.Length == 11 && telefonNumarası1.Length == 10) // &&  and işareti olarak kayıtlara geçsin
                                                 {
-                                                    Console.WriteLine("Hesabınız kitlendi iletişime geçin birileriyle.");
-                                                    Thread.Sleep(1000);  // delayın yerine 1 saniye bekliyor. thread.sleep(1000); 1000 demek 1 saniye demek.
-                                                    lupi2++;
+                                                    Console.WriteLine("TC kimlik ve telefon numarası doğrulandı.");
+                                                    int Para = para + 1000;
+                                                    Console.WriteLine("Mevcut paranız: " + para + " 1000 TL ödeme aldınız: " + Para);
+                                                    break;
                                                 }
-                                                return;
+                                                else
+                                                {
+                                                    Console.WriteLine("TC kimlik numarası 11 haneli ve telefon numarası 10 haneli olmalıdır.");
+                                                    hak2--;
+                                                    Console.WriteLine("Kalan deneme hakkı: " + hak2);
+                                                    if (hak2 == 0)
+                                                    {
+                                                        int lupi2 = 0;
+                                                        while (lupi2 < 100)
+                                                        {
+                                                            Console.WriteLine("Hesabınız kitlendi iletişime geçin birileriyle.");
+                                                            Thread.Sleep(1000);  // delayın yerine 1 saniye bekliyor. thread.sleep(1000); 1000 demek 1 saniye demek.
+                                                            lupi2++;
+                                                        }
+                                                        return;
+                                                    }
+                                                }
+                                            }
+                                            catch (FormatException)
+                                            {
+                                                Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
                                             }
                                         }
                                     }
-                                    catch (FormatException)
+                                    else if (kartsızsecim == 2)
                                     {
-                                        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+
+                                        while (true)
+                                        {
+                                            try
+                                            {
+
+
+                                                Console.WriteLine("1  Para Yatırma");
+                                                Console.WriteLine("2  Para Çekme");
+                                                Console.WriteLine("3  Para Çekme");
+                                                Console.WriteLine("9  Ana menüye dön");
+                                                Console.WriteLine("8  atmden çıkış");
+                                                Console.WriteLine("7  EN BAŞA GİDİYOZ");
+                                                int işlem = Convert.ToInt32(Console.ReadLine());
+                                                int para = 2000;
+                                                if (işlem == 1)    // 8 ve 9 u koycam unutma 
+                                                {
+                                                    Console.WriteLine("Hesap numaranızı giriniz");
+                                                    string hesapNumarası = Console.ReadLine();
+                                                    if (hesapNumarası.Length == 10)
+                                                    {
+                                                        while (true)
+                                                        {
+                                                            try
+                                                            {
+                                                                Console.WriteLine("Yatırmak istediğiniz tutarı giriniz. \nmevcut paranız:  " + para + "TL " + "\nAnaMenü için 9 tusuna basın. \n Çıkış için 8 tuşuna basın. \n Bir önceki menü için 7.");
+                                                                int yatir = Convert.ToInt32(Console.ReadLine());
+                                                                if (yatir == 0)
+                                                                {
+                                                                    Console.WriteLine("Para tutarı 0 olamaz");
+                                                                }
+                                                                else if (yatir < 0)
+                                                                {
+                                                                    Console.WriteLine("Negatif değer olamaz.");
+                                                                }
+                                                                else if (yatir == 8)
+                                                                {
+                                                                    Console.WriteLine("Ane Menüye Dönülüyor");
+                                                                    goto anamenü2;
+                                                                }
+                                                                else if (yatir == 9)
+                                                                {
+                                                                    Console.WriteLine("Atmden çıkış yapılıyıor");
+                                                                    return;
+                                                                }
+                                                                else if (yatir == 7)
+                                                                {
+                                                                    Console.WriteLine("Bir önceki menüye dönülüyor");
+                                                                    break;
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    para += yatir;
+                                                                    Console.WriteLine("Para yatırma işlemi başarılı. Yeni bakiye: " + para);
+                                                                    break;
+                                                                }
+                                                            }
+                                                            catch (FormatException)
+                                                            {
+                                                                Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("Hesap numarası 10 haneli olmalıdır.");
+                                                    }
+                                                }
+                                                else if (işlem == 8)
+                                                {
+                                                    Console.WriteLine("atmden çıkılıyor....");
+                                                    return;
+                                                }
+                                                else if (işlem == 7)
+                                                {
+                                                    Console.WriteLine("taa en basa gidiyoz....");
+                                                    goto yukarı; // BURDAKİ GARİPLİK CASE 2 DEKİ GOTO NASIL OLUYORSA CASE 1 İN İÇİNDEKİ ETİKETE GİDEMİYOR . GARİP anamenü
+                                                }
+                                                else if (işlem == 9)
+
+                                                {
+                                                    Console.WriteLine("Önceki menüye dönülüyor...");
+                                                    break;
+                                                }
+                                                else if (işlem == 2)
+                                                {
+                                                    Console.WriteLine("Hesap numaranızı giriniz");
+                                                    string hesapNumarası = Console.ReadLine();
+                                                    if (hesapNumarası.Length == 10)
+                                                    {
+                                                        while (true)
+                                                        {
+                                                            try
+                                                            {
+                                                                Console.WriteLine("Çekmek istediğiniz tutarı giriniz. \nmevcut paranız:  " + para + "TL " + "\nAnaMenü için 9 tusuna basın. \n Çıkış için 8 tuşuna bas");
+                                                                int cek = Convert.ToInt32(Console.ReadLine());
+                                                                if (cek == 0)
+                                                                {
+                                                                    Console.WriteLine("Para tutarı 0 olamaz");
+                                                                }
+                                                                else if (cek < 0)
+                                                                {
+                                                                    Console.WriteLine("Negatif değer olamaz.");
+                                                                }
+                                                                else if (cek > para)
+                                                                {
+                                                                    Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + para);
+                                                                }
+                                                                else if (cek == 8)
+                                                                {
+                                                                    Console.WriteLine("Kart iade ediliyor...");
+                                                                    return;
+                                                                }
+                                                                else if (cek == 9)
+                                                                {
+                                                                    Console.WriteLine("Ana menüye dönülüyor...");
+                                                                    goto yukarı;
+                                                                }
+                                                                else
+                                                                {
+                                                                    para -= cek;
+                                                                    Console.WriteLine("Para çekme işlemi başarılı. Yeni bakiye: " + para);
+                                                                    break;
+                                                                }
+                                                            }
+                                                            catch (FormatException)
+                                                            {
+                                                                Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                            }
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("❌ Geçersiz hesap numarası! 10 haneli bir numara giriniz.");
+                                                    }
+                                                }
+
+                                            }
+                                            catch (FormatException)
+                                            {
+                                                Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                            }
+                                        }
                                     }
+                                    else if (kartsızsecim == 3)       // burdayızzzzzzzzzzzzzz
+                                    {
+                                        while (true)
+                                        {
+                                            try
+                                            {
+                                                Console.WriteLine("Kimlik numarası ile para gönderme secenegi için 1 tuşuna basın");
+                                                Console.WriteLine("kredi kartı numarası ile para gönderme secenegi için 2 tuşuna basın");
+                                                Console.WriteLine("Eft numarası ile para gönderme secenegi için 3 tuşuna basın");
+                                                Console.WriteLine("cıkıs için 9 tuşuna basın");
+                                                Console.WriteLine("Geri dönmek için 8 tuşuna basın");
+                                                int krediSecim = Convert.ToInt32(Console.ReadLine());
+                                                int kpara = 2000;
+                                                if (krediSecim == 1) 
+                                                {
+                                                    while (true)
+                                                    {
+                                                        try
+                                                        {
+                                                            Console.WriteLine("Kimlik numaranızı girin 11 hane olmak zorunda.");
+                                                            string kimlikNumarası = Console.ReadLine();
+                                                            if (kimlikNumarası.Length == 11)
+                                                            {
+                                                                try
+                                                                {
+                                                                    Console.WriteLine("Kimlik numarası doğrulandı.");
+                                                                    Console.WriteLine("Göndermek istediğiniz tutarı girin");
+                                                                    int ktutar = Convert.ToInt32(Console.ReadLine());
+                                                                    if (ktutar == 0)
+                                                                    {
+                                                                        Console.WriteLine("Para tutarı 0 olamaz");
+                                                                    }
+                                                                    else if (ktutar < 0)
+                                                                    {
+                                                                        Console.WriteLine("Negatif değer olamaz.");
+                                                                    }
+                                                                    else if (kpara < ktutar)
+                                                                    {
+                                                                        Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + kpara);
+                                                                    }
+                                                                    else if (kpara == 8)
+                                                                    {
+                                                                        Console.WriteLine("Kart iade ediliyor...");
+                                                                        return;
+                                                                    }
+                                                                    else if (kpara == 9)
+                                                                    {
+                                                                        Console.WriteLine("Ana menüye dönülüyor...");
+                                                                        goto anamenü2;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        kpara -= ktutar;
+                                                                        Console.WriteLine("Para gönderme işlemi başarılı. Kalan bakiye: " + kpara);
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                catch (FormatException)
+                                                                {
+                                                                    Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Kimlik numarası 11 haneli olmalıdır.");
+                                                            }
+                                                        }
+                                                        catch
+                                                        {
+
+                                                        }
+                                                    }
+                                                }
+                                                else if (krediSecim == 3)
+                                                {
+                                                    while (true)
+                                                    {
+                                                        Console.WriteLine("EFT numaranızı girin 10 hane olmak zorunda.");
+                                                        string eftNumarası = Console.ReadLine().ToLower();
+                                                        if (eftNumarası.Length == 10 && eftNumarası.StartsWith("tr"))
+                                                        {
+                                                            Console.WriteLine("EFT numarası doğrulandı.");
+                                                            Console.WriteLine("Göndermek istediğiniz tutarı girin");
+                                                            int ktutar = Convert.ToInt32(Console.ReadLine());
+                                                            if (ktutar == 0)
+                                                            {
+                                                                Console.WriteLine("Para tutarı 0 olamaz");
+                                                            }
+                                                            else if (ktutar < 0)
+                                                            {
+                                                                Console.WriteLine("Negatif değer olamaz.");
+                                                            }
+                                                            else if (kpara < ktutar)
+                                                            {
+                                                                Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + kpara);
+                                                            }
+                                                            else if (kpara == 8)
+                                                            {
+                                                                Console.WriteLine("Kart iade ediliyor...");
+                                                                return;
+                                                            }
+                                                            else if (kpara == 9)
+                                                            {
+                                                                Console.WriteLine("Ana menüye dönülüyor...");
+                                                                goto anamenü2;
+                                                            }
+                                                            else
+                                                            {
+                                                                kpara -= ktutar;
+                                                                Console.WriteLine("Para gönderme işlemi başarılı. Kalan bakiye: " + kpara);
+                                                                break;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            Console.WriteLine("EFT numarası 10 haneli olmalıdır. ve tr ile baslamalıdır");
+                                                        }
+                                                            ;
+                                                    }
+                                                }
+                                                else if (krediSecim == 9)
+                                                {
+                                                    Console.WriteLine("Ana menüye dönülüyor...");
+                                                    goto anamenü2;
+                                                }
+                                                else if (krediSecim == 8)
+                                                {
+                                                    Console.WriteLine("Bir önceki menüye dönülüyor...");
+                                                    break;
+                                                }
+                                                else if (krediSecim == 2)
+                                                {
+                                                    while (true)
+                                                    {
+                                                        Console.WriteLine("Kredi kartı numaranızı girin 16 hane olmak zorunda.");
+                                                        string krediKartıNumarası = Console.ReadLine();
+                                                        if (krediKartıNumarası.Length == 16)
+                                                        {
+                                                            Console.WriteLine("Kredi kartı numarası doğrulandı.");
+                                                            Console.WriteLine("Göndermek istediğiniz tutarı girin");
+                                                            int ktutar = Convert.ToInt32(Console.ReadLine());
+                                                            if (ktutar == 0)
+                                                            {
+                                                                Console.WriteLine("Para tutarı 0 olamaz");
+                                                            }
+                                                            else if (ktutar < 0)
+                                                            {
+                                                                Console.WriteLine("Negatif değer olamaz.");
+                                                            }
+                                                            else if (kpara < ktutar)
+                                                            {
+                                                                Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + kpara);
+                                                            }
+                                                            else if (kpara == 8)
+                                                            {
+                                                                Console.WriteLine("Kart iade ediliyor...");
+                                                                return;
+                                                            }
+                                                            else if (kpara == 9)
+                                                            {
+                                                                Console.WriteLine("Ana menüye dönülüyor...");
+                                                                goto anamenü2;
+                                                            }
+                                                            else
+                                                            {
+                                                                kpara -= ktutar;
+                                                                Console.WriteLine("Para gönderme işlemi başarılı. Kalan bakiye: " + kpara);
+                                                                break;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                        Console.WriteLine("Kredi kartı numarası 16 haneli olmalıdır.");
+                                                        }
+                                                    }
+                                                    }
+                                                else
+                                                {
+                                                    Console.WriteLine("Bir hata oldu ne sen sor ne ben söyliyim.");
+                                                }
+                                                }
+                                                
+                                            catch (FormatException)
+                                            {
+                                                Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                            }
+                                        }
+                                    }
+                                    else if (kartsızsecim == 5)
+                                    {
+                                        while (true)
+                                        {
+                                            Console.WriteLine("Elektrik faturasını ödemek için 1 tuşuna basın.");
+                                            Console.WriteLine("Telefon faturasını ödemek için 2 tuşuna basın.");
+                                            Console.WriteLine("İnternet faturasını ödemek için 3 tuşuna basın.");
+                                            Console.WriteLine("Su faturasını ödemek için 4 tuşuna basın.");
+                                            Console.WriteLine("Ogs Ödemeleri için 5 tuşuna basın.");
+                                            int ödeme = Convert.ToInt32(Console.ReadLine());
+                                            int öpara = 2000;
+                                            if (ödeme == 1)
+                                            {
+                                                while (true)
+                                                {
+                                                    try
+                                                    {
+                                                        Console.WriteLine("Elektrik tutarını giriniz. \nmevcut paranız:  " + öpara + "TL " + "\nAnaMenü için 9 tusuna basın. \n Çıkış için 8 tuşuna basın.");
+                                                        int elektrik = Convert.ToInt32(Console.ReadLine());
+                                                        if (elektrik == 0)
+                                                        {
+                                                            Console.WriteLine("Fatura tutarı 9 olamaz");
+                                                        }
+                                                        else if (elektrik < 0)
+                                                        {
+                                                            Console.WriteLine("Negatif değer olamaz.");
+                                                        }
+                                                        else if (elektrik > öpara)
+                                                        {
+                                                            Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + öpara);
+                                                        }
+                                                        else if (elektrik == 8)
+                                                        {
+                                                            Console.WriteLine("Kart iade ediliyor...");
+                                                            return;
+                                                        }
+                                                        else if (elektrik == 9)
+                                                        {
+                                                            Console.WriteLine("anamenüye dönüyoz...");
+                                                            goto anamenü2;
+                                                        }
+                                                        else
+                                                        {
+                                                            öpara -= elektrik;
+                                                            Console.WriteLine("Fatura ödendi. Kalan bakiye: " + öpara);
+                                                            break;
+                                                        }
+                                                    }
+                                                    catch (FormatException)
+                                                    {
+                                                        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                    }
+                                                }
+                                            }
+                                            else if (ödeme == 2)
+                                            {
+                                                while (true)
+                                                {
+                                                    try
+                                                    {
+                                                        Console.WriteLine("Telefon tutarını giriniz. \nmevcut paranız:  " + öpara + "TL " + "\nAnaMenü için 9 tusuna basın. \n Çıkış için 8 tuşuna basın.");
+                                                        int telefon = Convert.ToInt32(Console.ReadLine());
+                                                        if (telefon == 0)
+                                                        {
+                                                            Console.WriteLine("Fatura tutarı 9 olamaz");
+                                                        }
+                                                        else if (telefon < 0)
+                                                        {
+                                                            Console.WriteLine("Negatif değer olamaz.");
+                                                        }
+                                                        else if (telefon > öpara)
+                                                        {
+                                                            Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + öpara);
+                                                        }
+                                                        else if (telefon == 8)
+                                                        {
+                                                            Console.WriteLine("Kart iade ediliyor...");
+                                                            return;
+                                                        }
+                                                        else if (telefon == 9)
+                                                        {
+                                                            Console.WriteLine("en basa gidiyon...");
+                                                            goto yukarı;
+                                                        }
+                                                        else
+                                                        {
+                                                            öpara -= telefon;
+                                                            Console.WriteLine("Fatura ödendi. Kalan bakiye: " + öpara);
+                                                            break;
+                                                        }
+                                                    }
+                                                    catch (FormatException)
+                                                    {
+                                                        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                    }
+                                                }
+                                            }
+                                            else if (ödeme == 3)
+                                            {
+                                                while (true)
+                                                {
+                                                    try
+                                                    {
+                                                        Console.WriteLine("İnternet tutarını giriniz. \nmevcut paranız:  " + öpara + "TL " + "\nAnaMenü için 9 tusuna basın. \n Çıkış için 8 tuşuna basın.");
+                                                        int internet = Convert.ToInt32(Console.ReadLine());
+                                                        if (internet == 0)
+                                                        {
+                                                            Console.WriteLine("Fatura tutarı 9 olamaz");
+                                                        }
+                                                        else if (internet < 0)
+                                                        {
+                                                            Console.WriteLine("Negatif değer olamaz.");
+                                                        }
+                                                        else if (internet > öpara)
+                                                        {
+                                                            Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + öpara);
+                                                        }
+                                                        else if (internet == 8)
+                                                        {
+                                                            Console.WriteLine("Kart iade ediliyor...");
+                                                            return;
+                                                        }
+                                                        else if (internet == 9)
+                                                        {
+                                                            Console.WriteLine("anamenüye dönüyoz...");
+                                                            goto anamenü2;
+                                                        }
+                                                        else
+                                                        {
+                                                            öpara -= internet;
+                                                            Console.WriteLine("Fatura ödendi. Kalan bakiye: " + öpara);
+                                                            break;
+                                                        }
+                                                    }
+                                                    catch (FormatException)
+                                                    {
+                                                        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                    }
+                                                }
+                                            }
+                                            else if (ödeme == 4)
+                                            {
+                                                while (true)
+                                                {
+                                                    try
+                                                    {
+                                                        Console.WriteLine("Su fatura tutarını giriniz. \nmevcut paranız: " + öpara + "TL" + "\nAnamenü için 9 tuşuna basın. \n Çıkış için 8 tuşuna basın");
+                                                        int su = Convert.ToInt32(Console.ReadLine());
+                                                        if (su == 0)
+                                                        {
+                                                            Console.WriteLine("Fatura tutarı 0 olamaz");
+                                                        }
+                                                        else if (su < 0)
+                                                        {
+                                                            Console.WriteLine("Negatif değer olamaz.");
+                                                        }
+                                                        else if (su > öpara)
+                                                        {
+                                                            Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + öpara);
+                                                        }
+                                                        else if (su == 8)
+                                                        {
+                                                            Console.WriteLine("Kart iade ediliyor...");
+                                                            return;
+                                                        }
+                                                        else if (su == 9)
+                                                        {
+                                                            Console.WriteLine("anamenüye dönüyoz...");
+                                                            goto anamenü2;
+                                                        }
+                                                        else
+                                                        {
+                                                            öpara -= su;
+                                                            Console.WriteLine("Fatura ödendi. Kalan bakiye: " + öpara);
+                                                            break;
+                                                        }
+                                                    }
+                                                    catch (FormatException)
+                                                    {
+                                                        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                    }
+                                                }
+                                            }
+                                            else if (ödeme == 5)
+                                            {
+                                                while (true)
+                                                {
+                                                    try
+                                                    {
+                                                        Console.WriteLine("Ogs tutarını giriniz. \nmevcut paranız:  " + öpara + "TL " + "\nAnaMenü için 9 tusuna basın. \n Çıkış için 8 tuşuna basın.");
+                                                        int ogs = Convert.ToInt32(Console.ReadLine());
+                                                        if (ogs == 0)
+                                                        {
+                                                            Console.WriteLine("Fatura tutarı 0 olamaz");
+                                                        }
+                                                        else if (ogs < 0)
+                                                        {
+                                                            Console.WriteLine("Negatif değer olamaz.");
+                                                        }
+                                                        else if (ogs > öpara)
+                                                        {
+                                                            Console.WriteLine("Bu kadar paranız yok. Kalan bakiye: " + öpara);
+                                                        }
+                                                        else if (ogs == 8)
+                                                        {
+                                                            Console.WriteLine("Kart iade ediliyor...");
+                                                            return;
+                                                        }
+                                                        else if (ogs == 9)
+                                                        {
+                                                            Console.WriteLine("anamenüye dönüyoz...");
+                                                            goto anamenü2;
+                                                        }
+                                                        else
+                                                        {
+                                                            öpara -= ogs;
+                                                            Console.WriteLine("Fatura ödendi. Kalan bakiye: " + öpara);
+                                                            break;
+                                                        }
+                                                    }
+                                                    catch (FormatException)
+                                                    {
+                                                        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else if (kartsızsecim == 4)
+                                    {
+                                        Console.WriteLine("Ödeme sayfamız şuanda arızalıdır. \nTuşa basarak çıkış yapabilir 8. \n tuşa basarak geri dönebilirsiniz 7 ");
+                                        {
+                                            while (true)
+                                            {
+                                                try
+                                                {
+                                                    int arıza = Convert.ToInt32(Console.ReadLine());
+                                                    if (arıza == 7)
+                                                    {
+                                                        Console.WriteLine("Bir önceki menüye dönülüyor...");
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("Atmden çıkılıyor....");
+                                                        return;
+                                                    }
+                                                }
+                                                catch (FormatException)
+                                                {
+                                                    Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    else if (kartsızsecim == 9)
+                                    {
+                                        Console.WriteLine("Ana menüye dönülüyor...");
+                                        goto anamenü2;
+                                    }
+
+
+                                    else if (kartsızsecim == 8)
+                                    {
+                                        Console.WriteLine("Atmden çıkılıyor....");
+                                        return;
+                                    }
+
                                 }
+
+
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+                                }
+
+
                             }
-                            break;
                         }
+                        break;  // bu niye söndü fikrim yok.
                 }
             }
             catch (FormatException)
@@ -1115,6 +1739,13 @@ namespace ConsoleApp1
                 goto yukarı;
             }
         }
+
     }
 }
+
+
+
+
+
+
 
