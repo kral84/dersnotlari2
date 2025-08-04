@@ -1,0 +1,8 @@
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\bin\Debug\OTOMAT PROJESİ.exe.config
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\bin\Debug\OTOMAT PROJESİ.exe
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\bin\Debug\OTOMAT PROJESİ.pdb
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\obj\Debug\OTOMAT PROJESİ.csproj.AssemblyReference.cache
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\obj\Debug\OTOMAT PROJESİ.csproj.CoreCompileInputs.cache
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\obj\Debug\OTOMAT PROJESİ.exe
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\obj\Debug\OTOMAT PROJESİ.pdb
+C:\Users\leven\Downloads\c444\OTOMAT PROJESİ\obj\Debug\OTOMAT PROJESİ.exe.config
