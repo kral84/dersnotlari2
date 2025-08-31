@@ -1,0 +1,26 @@
+# VS / .NET
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# Build çıktıları
+bin/
+obj/
+[Aa]rtifacts/
+[Ll]og/
+*.cache/
+*.vsidx
+
+# Rider / ReSharper
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# Paketler
+packages/
+*.nupkg
+
+# Diğer
+*.tmp
+*.log
