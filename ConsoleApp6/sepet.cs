@@ -22,7 +22,7 @@ namespace ConsoleApp6
 
             
             
-                if (secim > 0 && secim <= menü.yemekler.Count )
+                if (secim > 0 && secim <= menü.kategori.Count)
                 {
                 menü secilen = menü.yemekler[secim];
                 sepets.Add (new sepet { ürünadı = secilen.yemekadı, fiyatı = secilen.fiyat });
