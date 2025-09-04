@@ -23,16 +23,18 @@ namespace ConsoleApp7
 
                 {
                     case 1:
-                        
+
                         break;
                     case 2:
                         menüler.yemekmenügöster();
+                        menüler.icecekmenügöster();
                         break;
 
                     case 3:
                         while (true)
                         {
                             Console.WriteLine("yemek silmek icin 1 tuşuna basın. \nYemek eklemek için 2 tuşuna basın. \nToplu silmek için 3 tuşuna basın. \nYemek Güncellemek için 4 tuşuna basın \nÇıkış için 9 tusuna basın.");
+                            Console.WriteLine("icecek eklemek için 5 tuşuna basın.");
                             string input = Console.ReadLine();
                             if (!int.TryParse(input, out int secim1))
                             {
@@ -49,7 +51,7 @@ namespace ConsoleApp7
                             }
                             else if (secim1 == 2)
                             {
-                                menüler.yemekekle();                         
+                                menüler.yemekekle();
                             }
                             else if (secim1 == 3)
                             {
@@ -59,13 +61,26 @@ namespace ConsoleApp7
                             {
                                 menüler.yemekgüncelle();
                             }
+                            else if (secim1 == 5)
+                            {
+                                menüler.içecekekle();
+                            }
+                            else if (secim1 == 6)
+                            {
+                                menüler.iceceksilme();
+                            }
+                            else if (secim1 == 7)
+                            {
+                                menüler.icecektoplusil();
+                            }
                         }
                         break;
                     case 4:
-                        
-                        break;
-                };
+
+                                break;
+                            }
+                            ;
+                        }
+                }
             }
         }
-    }
-}
