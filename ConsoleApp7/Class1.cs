@@ -10,7 +10,18 @@ namespace ConsoleApp7
     internal class admin
     {
         public static string kullanıcıadı = "resto";
-        public static int kullanıcısifre = 123;
+        private static int kullanıcısifre = 123;
+
+        public static int _kullaniciSifre
+        {
+            get { return kullanıcısifre; }
+            set
+            {
+                if (value > 0)
+                    kullanıcısifre = value;
+            }
+
+        }
 
         public static void admingiris()
         {
@@ -50,7 +61,7 @@ namespace ConsoleApp7
             {
                 Console.WriteLine("sayıdan oluşur");
             }
-;           if (dogrusifre != kullanıcısifre)
+; if (dogrusifre != _kullaniciSifre)
             {
                 Console.WriteLine("Şifre hatalı");
                 return false;
@@ -59,5 +70,5 @@ namespace ConsoleApp7
 
 
         }
-}
+    }
 }
