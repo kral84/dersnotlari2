@@ -40,6 +40,7 @@ namespace ConsoleApp7
         {
             Console.WriteLine("Kullanıcı adını giriniz:");
             string kullanıcıadı1 = Console.ReadLine();
+           
             if (string.IsNullOrWhiteSpace(kullanıcıadı1))
             {
                 Console.WriteLine("Kullanıcı adı boş olamaz.");

@@ -123,7 +123,7 @@ namespace ConsoleApp7
             int sayac = 1;
             foreach (var item in pazaragidelimicecek)
             {
-                Console.WriteLine($"{item.icecek}, Fiyat: {item.fiyat} TL, Stok: {item.stok}, Kategori: {item.kategori}");
+                Console.WriteLine($"{sayac}-{item.icecek}, Fiyat: {item.fiyat} TL, Stok: {item.stok}, Kategori: {item.kategori}");
                 sayac++;
             }
         }
@@ -198,5 +198,9 @@ namespace ConsoleApp7
 
     }
 }
+
+
+
+
 
 

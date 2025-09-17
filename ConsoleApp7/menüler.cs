@@ -238,6 +238,9 @@ namespace ConsoleApp7
             new menüler {icecekadı = "kola", fiyat = 30, stok = 150, kategori = "içecek"},
             new menüler {icecekadı = "fanta", fiyat = 25, stok = 100, kategori = "içecek"},
             new menüler { icecekadı = "ayran", fiyat = 20, stok = 200, kategori = "içecek" },
+             new menüler { icecekadı = "limonata",  fiyat = 40, stok = 90, kategori = "içecek" },
+            new menüler { icecekadı = "çay",       fiyat = 20, stok = 100, kategori = "içecek"},
+            new menüler { icecekadı = "kahve",     fiyat = 10, stok = 21, kategori = "içecek" },
         };
         public static void icecekmenügöster()
         {

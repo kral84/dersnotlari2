@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36212.18 d17.14
+VisualStudioVersion = 17.14.36212.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp5", "ConsoleApp5.csproj", "{EC7C545D-01F2-41B9-8CFC-7BE2FB0561B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp6", "..\ConsoleApp6\ConsoleApp6.csproj", "{48624A00-3EC5-42C2-A503-778376DA130B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp7", "..\ConsoleApp7\ConsoleApp7.csproj", "{2E0F1B8C-3656-49F2-80A3-01F84A3FE4B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "metotlar", "..\metotlar\metotlar.csproj", "{9212B529-9469-4160-9EC6-030D5E7283BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2E0F1B8C-3656-49F2-80A3-01F84A3FE4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E0F1B8C-3656-49F2-80A3-01F84A3FE4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E0F1B8C-3656-49F2-80A3-01F84A3FE4B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9212B529-9469-4160-9EC6-030D5E7283BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9212B529-9469-4160-9EC6-030D5E7283BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9212B529-9469-4160-9EC6-030D5E7283BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9212B529-9469-4160-9EC6-030D5E7283BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
