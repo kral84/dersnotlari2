@@ -218,7 +218,7 @@ namespace ConsoleApp5
                         yeniyemek.yemekadi = input;
                         yeniyemek.kategori = "yemek";
                         Console.WriteLine($"✓ '{input}' eklendi.");
-                        
+
                     }
                     else
                     {
@@ -253,12 +253,17 @@ namespace ConsoleApp5
                         yeniyemek.icecekadi = input;
                         yeniyemek.kategori = "icecek";
                         Console.WriteLine($"✓ '{input}' eklendi.");
-                      
+
                     }
                     else
                     {
-                        continue; 
+                        continue;
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Geçersiz kategori! 1 veya 2 seçin.");
+                    continue;
                 }
                 do
                 {

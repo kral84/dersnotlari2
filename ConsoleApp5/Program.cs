@@ -11,13 +11,22 @@ class Program
             string secim = Console.ReadLine();
             if (secim == "1")
             {
-                menüsec.menüsecelim();
+                masalar.masasilkisisayisi();
+                //masalar.masasilisim();
+                //masalar.masasil();
+                //masalar.masagüncelle();
+                
+                //masalar.masagöster();
+                //menüsec.menüsecelim();
                 //menü.menüekleme2(); iptal
-               
+
             }
+           
+
             else if (secim == "0")
             {
-                menü.menügöster();
+                masalar.müsterininmasası();
+                //menü.menügöster();
             }
             else if (secim == "2")
             {
@@ -38,6 +47,10 @@ class Program
             else if (secim == "6")
             {
                 menü.yemekekle();
+            }
+            else if (secim == "7")
+            {
+                masalar.masaekle();
             }
 
         }

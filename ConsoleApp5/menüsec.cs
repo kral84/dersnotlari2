@@ -35,7 +35,7 @@ namespace ConsoleApp5
             {
                 Console.WriteLine("hata");
                 return;
-            }
+            } 
             secilenYemek = menü.menüler[secim - 1];
             Console.WriteLine($"{secilenYemek.icecekadi} {secilenYemek.yemekadi}");
             Console.WriteLine("kaç adet");
