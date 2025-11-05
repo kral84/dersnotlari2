@@ -4,16 +4,65 @@ Albion Smart Sniffer - DOĞRU Parser + Rota Kayıt Sistemi
 Local player pozisyonunu REQUEST'ten alır!
 """
 
-import asyncio
-import json
-import time
-from typing import Dict, List, Optional, Tuple
-from scapy.all import sniff, UDP, Raw
-import threading
-import keyboard
+import sys
+import traceback
+
+# Bağımlılık kontrolü
+missing_deps = []
+try:
+    import asyncio
+except ImportError:
+    missing_deps.append("asyncio")
+
+try:
+    import json
+except ImportError:
+    missing_deps.append("json")
+
+try:
+    import time
+except ImportError:
+    missing_deps.append("time")
+
+try:
+    from typing import Dict, List, Optional, Tuple
+except ImportError:
+    missing_deps.append("typing")
+
+try:
+    from scapy.all import sniff, UDP, Raw
+except ImportError:
+    missing_deps.append("scapy")
+
+try:
+    import threading
+except ImportError:
+    missing_deps.append("threading")
+
+try:
+    import keyboard
+except ImportError:
+    missing_deps.append("keyboard")
+
+# Eksik bağımlılık varsa bildir ve çık
+if missing_deps:
+    print("❌ HATA: Eksik Python kütüphaneleri!\n")
+    print("Eksik olan:", ", ".join(missing_deps))
+    print("\n📦 Kurulum için:")
+    print("   pip3 install -r requirements.txt")
+    print("\n   VEYA:")
+    print("   pip3 install scapy keyboard websockets")
+    print("\n⚠️  Linux'ta scapy için:")
+    print("   sudo apt-get install python3-scapy")
+    sys.exit(1)
 
 # DOĞRU parser'ı import et
-from zqradar_correct_parser import parse_photon_packet_correct, OperationCodes
+try:
+    from zqradar_correct_parser import parse_photon_packet_correct, OperationCodes
+except ImportError as e:
+    print(f"❌ HATA: Parser import edilemedi: {e}")
+    print("   zqradar_correct_parser.py dosyası mevcut mu?")
+    sys.exit(1)
 
 # ============================================================================
 # ROTA KAYIT SİSTEMİ
@@ -309,59 +358,75 @@ class SnifferWebSocketServer:
 # ============================================================================
 
 def main():
-    print("╔══════════════════════════════════════════════════╗")
-    print("║   Albion Smart Sniffer - DOĞRU Parser          ║")
-    print("║   Local Player: Request/Response                ║")
-    print("╚══════════════════════════════════════════════════╝\n")
+    try:
+        print("╔══════════════════════════════════════════════════╗")
+        print("║   Albion Smart Sniffer - DOĞRU Parser          ║")
+        print("║   Local Player: Request/Response                ║")
+        print("╚══════════════════════════════════════════════════╝\n")
 
-    print("⚠️  UYARI:")
-    print("   - Root/Admin izni gerekli!")
-    print("   - Npcap/WinPcap kurulu olmalı!\n")
+        print("⚠️  UYARI:")
+        print("   - Root/Admin izni gerekli!")
+        print("   - Npcap/WinPcap kurulu olmalı!\n")
 
-    print("Mod seçin:")
-    print("1. Konsol + Rota Kayıt (Space ile)")
-    print("2. WebSocket Server (ws://localhost:5002)")
-    print("3. Sadece İzleme (rota kayıt YOK)")
-    choice = input("\nSeçim (1/2/3): ")
+        print("Mod seçin:")
+        print("1. Konsol + Rota Kayıt (Space ile)")
+        print("2. WebSocket Server (ws://localhost:5002)")
+        print("3. Sadece İzleme (rota kayıt YOK)")
+        choice = input("\nSeçim (1/2/3): ").strip()
 
-    sniffer = AlbionSmartSniffer(port=5056)
+        if choice not in ["1", "2", "3"]:
+            print("❌ Geçersiz seçim! 1, 2 veya 3 seçin.")
+            sys.exit(1)
 
-    if choice == "1":
-        # ROTA KAYIT MODU
-        print("\n⚠️  5 saniye içinde oyuna geç ve hareket et!")
-        time.sleep(5)
+        sniffer = AlbionSmartSniffer(port=5056)
 
-        try:
-            sniffer.start(record_mode=True)
-        except KeyboardInterrupt:
-            sniffer.stop()
-            sniffer.recorder.save_route("route.json")
-            print("\n👋 Kapatılıyor...")
+        if choice == "1":
+            # ROTA KAYIT MODU
+            print("\n⚠️  5 saniye içinde oyuna geç ve hareket et!")
+            time.sleep(5)
 
-    elif choice == "2":
-        # WEBSOCKET SERVER
-        import websockets
+            try:
+                sniffer.start(record_mode=True)
+            except KeyboardInterrupt:
+                sniffer.stop()
+                sniffer.recorder.save_route("route.json")
+                print("\n👋 Kapatılıyor...")
 
-        # Sniffer'ı thread'de çalıştır
-        sniffer_thread = threading.Thread(target=lambda: sniffer.start(record_mode=False), daemon=True)
-        sniffer_thread.start()
+        elif choice == "2":
+            # WEBSOCKET SERVER
+            import websockets
 
-        # WebSocket server başlat
-        ws_server = SnifferWebSocketServer(sniffer)
+            # Sniffer'ı thread'de çalıştır
+            sniffer_thread = threading.Thread(target=lambda: sniffer.start(record_mode=False), daemon=True)
+            sniffer_thread.start()
 
-        try:
-            asyncio.run(ws_server.start())
-        except KeyboardInterrupt:
-            sniffer.stop()
-            print("\n👋 Kapatılıyor...")
+            # WebSocket server başlat
+            ws_server = SnifferWebSocketServer(sniffer)
 
-    elif choice == "3":
-        # SADECE İZLEME
-        try:
-            sniffer.start(record_mode=False)
-        except KeyboardInterrupt:
-            sniffer.stop()
-            print("\n👋 Kapatılıyor...")
+            try:
+                asyncio.run(ws_server.start())
+            except KeyboardInterrupt:
+                sniffer.stop()
+                print("\n👋 Kapatılıyor...")
+
+        elif choice == "3":
+            # SADECE İZLEME
+            try:
+                sniffer.start(record_mode=False)
+            except KeyboardInterrupt:
+                sniffer.stop()
+                print("\n👋 Kapatılıyor...")
+
+    except Exception as e:
+        print(f"\n❌ KRITIK HATA:")
+        print(f"   {type(e).__name__}: {e}")
+        print("\n📋 Detaylı hata:")
+        traceback.print_exc()
+        print("\n⚠️  Yardım:")
+        print("   - Root/Admin izni ile çalıştırın (sudo python3 ...)")
+        print("   - Tüm bağımlılıkların kurulu olduğundan emin olun")
+        print("   - Albion Online'ın açık olduğundan emin olun")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
