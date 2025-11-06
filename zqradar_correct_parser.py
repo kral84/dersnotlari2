@@ -19,6 +19,51 @@ class OperationCodes:
 
 
 # ============================================================================
+# EXTENDED DESERIALIZER (Request/Response desteği)
+# ============================================================================
+
+class Protocol16DeserializerExtended(Protocol16Deserializer):
+    """Extended deserializer with Operation support"""
+
+    def deserialize_operation_request(self) -> Dict:
+        """
+        OperationRequest parse
+        ZQRadar: {operationCode, parameters}
+        """
+        operation_code = self.read_uint8()
+        parameters = self.deserialize_parameter_table()
+
+        # Operation code'u parameters[253]'e ekle (ZQRadar compat)
+        parameters[253] = operation_code
+
+        return {'operationCode': operation_code, 'parameters': parameters}
+
+    def deserialize_operation_response(self) -> Dict:
+        """
+        OperationResponse parse
+        ZQRadar: {operationCode, returnCode, debugMessage, parameters}
+        """
+        operation_code = self.read_uint8()
+        return_code = self.read_uint16()
+
+        # Debug message (optional)
+        debug_type = self.read_uint8()
+        debug_message = self.deserialize(debug_type) if debug_type else None
+
+        parameters = self.deserialize_parameter_table()
+
+        # Operation code'u parameters[253]'e ekle
+        parameters[253] = operation_code
+
+        return {
+            'operationCode': operation_code,
+            'returnCode': return_code,
+            'debugMessage': debug_message,
+            'parameters': parameters
+        }
+
+
+# ============================================================================
 # PHOTON COMMAND PARSER (REQUEST/RESPONSE desteği ile)
 # ============================================================================
 
@@ -84,7 +129,8 @@ class PhotonCommand:
         self.message_type = data[1]
         payload = data[2:]
 
-        deserializer = Protocol16Deserializer(payload)
+        # DOĞRU: Extended deserializer kullan (Request/Response desteği için)
+        deserializer = Protocol16DeserializerExtended(payload)
 
         try:
             if self.message_type == 2:  # OperationRequest
@@ -101,47 +147,6 @@ class PhotonCommand:
 
         except Exception as e:
             print(f"Parse error: {e}")
-
-
-class Protocol16DeserializerExtended(Protocol16Deserializer):
-    """Extended deserializer with Operation support"""
-
-    def deserialize_operation_request(self) -> Dict:
-        """
-        OperationRequest parse
-        ZQRadar: {operationCode, parameters}
-        """
-        operation_code = self.read_uint8()
-        parameters = self.deserialize_parameter_table()
-
-        # Operation code'u parameters[253]'e ekle (ZQRadar compat)
-        parameters[253] = operation_code
-
-        return {'operationCode': operation_code, 'parameters': parameters}
-
-    def deserialize_operation_response(self) -> Dict:
-        """
-        OperationResponse parse
-        ZQRadar: {operationCode, returnCode, debugMessage, parameters}
-        """
-        operation_code = self.read_uint8()
-        return_code = self.read_uint16()
-
-        # Debug message (optional)
-        debug_type = self.read_uint8()
-        debug_message = self.deserialize(debug_type) if debug_type else None
-
-        parameters = self.deserialize_parameter_table()
-
-        # Operation code'u parameters[253]'e ekle
-        parameters[253] = operation_code
-
-        return {
-            'operationCode': operation_code,
-            'returnCode': return_code,
-            'debugMessage': debug_message,
-            'parameters': parameters
-        }
 
 
 # ============================================================================
