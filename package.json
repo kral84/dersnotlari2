@@ -1,0 +1,22 @@
+{
+  "name": "albion-zqradar-tools",
+  "version": "1.0.0",
+  "description": "JavaScript tools for Albion Online using ZQRadar library",
+  "main": "zqradar_position_finder.js",
+  "scripts": {
+    "position": "node zqradar_position_finder.js",
+    "raw": "node zqradar_raw_data.js"
+  },
+  "keywords": [
+    "albion",
+    "zqradar",
+    "packet",
+    "sniffer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cap": "^0.2.1",
+    "buffercursor": "^0.0.12"
+  }
+}
